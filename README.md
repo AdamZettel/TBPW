@@ -1,7 +1,7 @@
 # TBPW
 An educational Density Functional Theory code developed at UIUC 
 # Source
-[UIUC software archive][https://www.mcc.uiuc.edu/software/]
+[UIUC software archive](https://www.mcc.uiuc.edu/software/)
 # Author List
 - Dyutiman Das, UIUC
 - William Mattson, UIUC
