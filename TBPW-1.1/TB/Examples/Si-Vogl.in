@@ -1,0 +1,63 @@
+*** Calculation for Si
+*** Parameters take from 
+*** Vogl et al. J. Phys. Chem. Solids Vol. 44, pp 365 (1983).
+
+***  Information for lattice
+NumberOfDimensions 3
+LatticeConstant 10.2612170
+LatticeVectors
+0.0 0.5 0.5
+0.5 0.0 0.5
+0.5 0.5 0.0
+
+*** Information for atomic positions
+NumberOfAtoms 2
+NumberOfSpecies 1
+ChemicalSpeciesLabel
+1 14 Si
+(Chemical Species label (first number) assumed to be in sequential order)
+
+AtomicCoordinatesFormat ScaledByLatticeVectors
+AtomicCoordinatesAndAtomicSpecies
+-0.125 -0.125 -0.125 1
+ 0.125  0.125  0.125 1
+
+*** Information for k-points and number of bands to plot
+NumberOfBands 10
+NumberOfLines 5
+NumberOfDivisions 10
+KPointsScale ReciprocalLatticeVectors
+KPointsAndLabels
+0.0   0.0   0.0      Ga
+0.375 0.375 0.75     K
+0.5   0.5   0.5      L
+0.0   0.0   0.0      Ga    
+0.0   0.5   0.5      X
+0.25  0.625 0.625    U
+
+*** Information for Tight Binding Calculation
+MaximumDistance 5.5
+TightBindingModelType  0
+NumChannelsPerSpecie
+1 2
+InputEnergiesInEV
+OrbitsAndEnergies
+1 1 4
+0  0  -4.2
+1  1   1.715
+1  2   1.715
+1  3   1.715
+1 2 1
+0  0   6.68
+numSKparams 5
+SKMatrices
+0 0 0 1 1 1 1  0.0 -2.075
+0 1 0 1 1 1 1  0.0  2.480816372
+1 1 0 1 1 1 1  0.0  2.71625
+1 1 1 1 1 1 1  0.0 -0.715
+1 0 0 1 2 1 1  0.0 -2.327399971
+
+
+
+
+

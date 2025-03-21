@@ -1,0 +1,631 @@
+\section{INPUT DATA FILE}
+
+
+\subsection{Format of Input File}
+
+All information is read in using the ``Taghandler" routine to
+search for a ``tag" and then reading the desired information on the
+same line as the tag or the following line(s).  Tags are listed
+below with description of the data to be read in, example inputs,
+and default value(s).  Tags can be in any order and the
+Taghandler" routine always finds only the first occurrence of a
+tag. Tags listed under section {\bf Tight binding}, {\bf Plane
+wave}, and {\bf Plane wave density} are specific to their
+respective methods. TB specific tags are ignored by PW and PWD, PW
+specific tags are ignored by PWD and TB, etc.
+
+The tags are chosen to coordinate with those used by the SIESTA
+code,
+http://www.uam.es/departamentos/ciencias/fismateriac/siesta/.
+
+Except were noted otherwise, all input and output parameters are
+in atomic units: energy in Hartrees and length in Bohr.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{General System Descriptors}
+
+\begin{description}
+\itemsep 10pt
+\parsep 0pt
+
+\item[{\bf NumberOfAtoms}] ({\it integer}):
+\index{NumberOfAtoms@{\bf NumberOfAtoms}} Number of atoms per
+primitive cell in the calculation.  For an isolated system this is
+the total number of atoms.
+
+\begin{verbatim}
+NumberOfAtoms 2
+\end{verbatim}
+
+{\it Default value:} No default. Variable must be supplied.
+
+\item[{\bf NumberOfDimensions}] ({\it integer}):
+\index{NumberOfDimensions@{\bf NumberOfDimensions}} This defines the
+dimension of the space used the calculation.  Lattice vectors and
+basis vectors (atom coordinates) are stored in arrays of dimension
+ndim read in after NumberOfDimensions tag. In PW this means the space
+dimension, which can be any dimension $1,2,3, \ldots$. In TB this
+defines the dimension of the lattive and atomic coordinates; the
+orbitals included in the calculation are defined by the model and/or
+input file.  (For example, a line of atoms is defined by ndim =1,
+whereas a nanotube is defined in a 3-dimensional space with ndim
+=1. For a nanotube, the orbitals can be chosen to be the full set of
+s, p$_x$, p$_y$, p$_z$, or one can treat only the $\pi$ orbitals, etc.)
+
+\begin{verbatim}
+NumberOfDimensions 3
+\end{verbatim}
+
+ {\it Default value:} 3
+
+\item[{\bf NumberOfSpecies}] ({\it integer}):
+\index{NumberOfSpecies@{\bf NumberOfSpecies}} Number of different
+atomic species in the calculation.  Atoms of the same species, but
+with different potential parameters are counted as different
+species. As of this moment, multiple species have no function in
+the PW code.
+\begin{verbatim}
+NumberOfSpecies 2
+\end{verbatim}
+
+{\it Default value:} 1
+
+\item[{\bf ChemicalSpeciesLabel}] ({\it data block}):
+\index{ChemicalSpeciesLabel@{\bf ChemicalSpeciesLabel}}
+It specifies the different chemical species\index{species} that are
+present, assigning them a number for further identification.
+
+\begin{verbatim}
+ChemicalSpeciesLabel
+1 31 Ga
+2 33 As
+\end{verbatim}
+The first number in the line is the species number (assumed to be
+in sequential order), it is followed by the atomic number, and
+then by the desired label.
+
+In PW the label must be one of the labels for which there is a
+defined potential.  At present, potentials provided in the code
+are limited to: Ga, As, and Si (empirical pseudopotentials); H
+(Coulomb potential screened with Thomas-Fermi function for r$_s$ =
+1.0); and {\tt El} (Empty lattice - free electrons with zero
+potential). Additional potentials can be added to module located
+in {\tt atomPotentialMod.f90}.
+
+In TB the label merely is a convenient label for the species. For
+example one can chose input such as
+
+\begin{verbatim}
+ChemicalSpeciesLabel
+ 1  14   Si
+ 2  14   Si_surface
+\end{verbatim}
+
+{\it Default value:} No default.  Input must be supplied.
+
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Lattice and coordinates}
+
+\begin{description}
+\itemsep 10pt
+\parsep 0pt
+
+
+\item[{\bf LatticeConstant}] ({\it real}):
+\index{LatticeConstant@{\bf LatticeConstant}}
+This defines the scale of the lattice vectors (Bohr).
+\begin{verbatim}
+LatticeConstant 10.6769569
+\end{verbatim}
+{\it Default value:} 1 Bohr
+
+\item[{\bf LatticeVectors}] ({\it data block}):
+\index{LatticeVectors@{\bf LatticeVectors}} The lattices vectors
+are read in units of the lattice constant defined above.  There
+are NumberOfDimensions basis vectors each with NumberOfDimensions
+components.
+
+\begin{verbatim}
+LatticeVectors
+0.0 0.5 0.5
+0.5 0.0 0.5
+0.5 0.5 0.0
+\end{verbatim}
+
+{\it Default value:} No default.  Variable must be supplied.
+
+\item[{\bf AtomicCoordinatesFormat}] ({\it string}):
+\index{AtomicCoordinatesFormat@{\bf AtomicCoordinatesFormat}}
+Character string to specify the format of the atomic positions in
+input. These can be expressed in two forms:
+\begin{itemize}
+\item {\tt ScaledCartesian} (atomic positions are given
+in Cartesian coordinates, in units of the lattice constant)
+\item {\tt ScaledByLatticeVectors} (atomic positions
+are given referred to the lattice vectors)
+\end{itemize}
+
+{\it Default value:} {\tt ScaledByLatticeVectors}
+
+\item[{\bf AtomicCoordinatesAndAtomicSpecies}] ({\it data block}):
+\index{AtomicCoordinatesAndAtomicSpecies@{\bf AtomicCoordinatesAndAtomicSpecies}}
+The data is read as follows:
+\begin{verbatim}
+From i = 1 to totalNumAtoms
+     read: atomCoordinates(:,i) speciesOfAtom(i)
+\end{verbatim}
+
+{\it Default value:} No default.  Variable must be supplied.
+
+\item[{\bf InputEnergiesInEV}]: \index{InputEnergiesInEV@{\bf
+InputEnergiesInEV}} This tag does not store any value. If this tag
+is found, the input energies are in eV. If this tag is omitted,
+input energies are in Hartrees. This effects {\bf
+OrbitsAndEnergies}, {\bf SKMatrices} in TB and {\bf EnergyCutoff}
+in PW. Output energies are still in Hartrees.
+
+
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{$k$-point sampling and band structure plots}
+
+\begin{description}
+\itemsep 10pt
+\parsep 0pt
+
+\item[{\bf KPointsScale}] ({\it string}):
+\index{KPointsScale@{\bf KPointsScale}}
+Specifies the scale of the $k$-vectors given in the {\bf
+KPointsAndLabels} below. The available options are:
+
+\begin{itemize}
+\item {\tt TwoPi/a} ($k$-point vector coordinates are given in Cartesian
+coordinates, in units of $2\pi/a$, where $a$ is the lattice constant)
+\item {\tt ReciprocalLatticeVectors} ($k$-point vectors are given in
+reciprocal lattice vector coordinates)
+\end{itemize}
+
+{\it Default value:} {\tt ReciprocalLatticeVectors}
+
+\item[{\bf NumberOfKPoints}] ({\it data block}):
+\index{NumberOfKPoints@{\bf NumberOfKPoints}}
+Read in {\bf NumberOfKPoints} from the input file in units determined by
+{\bf KPointsScale}.
+
+\begin{verbatim}
+NumberOfKPoints
+2
+0.0  0.0  0.0
+0.25 0.25 0.25
+\end{verbatim}
+
+Note that this tag is incompatible with {\bf KPointsAndLabels}. For the
+moment, this option has no function outside {\bf PWD} code.
+
+{\it Default value:} No default.  Variable must be supplied.
+
+\item[{\bf KPointsAndLabels}] ({\it data block}):
+\index{KPointsAndLabels@{\bf KPointsAndLabels}}
+Specifies the lines along which band energies are calculated. Here is an
+example for FCC lattice using the option {\tt ReciprocalLatticeVectors}:
+
+\begin{verbatim}
+KPointsAndLabels
+0.0   0.0   0.0      Ga
+0.375 0.375 0.75     K
+0.5   0.5   0.5      L
+0.0   0.0   0.0      Ga
+0.0   0.5   0.5      X
+0.25  0.625 0.625    U
+\end{verbatim}
+
+The last column (mandatory) is a LaTeX label for use in the band
+plot. Note that this tag is incompatible with {\bf
+NumberOfKPoints}. This option has no useful function outside of
+{\bf PW} and {\bf TB} code.
+
+{\it Default value:} No default.  Variable must be supplied.
+
+\item[{\bf NumberOfLines}] ({\it integer}): \index{NumberOfLines@{\bf
+NumberOfLines}} Number of directions in the reciprocal lattice along
+which the bands are to be plotted. This value cannot exceed the number
+of special $k$-points used {\bf KPointsAndLabels} minus one. For
+example, if {\bf NumberOfLines} equals 4, the band structure is only
+calculated from Ga -- X in the aforementioned FCC lattice. This tag
+is required if using {\bf KPointsAndLabels}.
+
+\begin{verbatim}
+NumberOfLines 5
+\end{verbatim}
+
+ {\it Default
+value:} No default.  Variable must be supplied.
+
+\item[{\bf NumberOfDivisions}] ({\it integer}):
+\index{NumberOfDivisions@{\bf NumberOfDivisions}}
+The number of divisions per line in $k$-space. This tag is required if
+using {\bf KPointsAndLabels}.
+
+\begin{verbatim}
+NumberOfDivisions 15
+\end{verbatim}
+NumberOfBands 10
+ {\it Default value:} No
+default.  Variable must be supplied.
+
+\item[{\bf NumberOfBands}] ({\it integer}):
+\index{NumberOfBands@{\bf NumberOfBands}}
+The number of bands to plot must be less than the total number of
+orbitals ({\it i.e.} basis).
+
+\begin{verbatim}
+NumberOfBands 10
+\end{verbatim}
+
+ {\it Default value:} No default.  Variable must
+be supplied.
+
+\end{description}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Tight binding}
+
+\begin{description}
+\itemsep 10pt
+\parsep 0pt
+
+
+\item[{\bf TightBindingModelType}] ({\it integer}):
+\index{TightBindingModelType@{\bf TightBindingModelType}} Choice
+of model:
+\begin{itemize}
+\item {\tt 0} General Method using rotation matrices that works
+for any angular momentum.  Requires input number of channels for
+each specie and input of Slater-Koster arrays with F and K
+parameters. See below for description.
+
+\item {\tt 1} Harrison universal parameters. See Harrison, "Elec.
+Str. and Props. of Solids". Assumes only one channel for each
+specie (default value - no need for input of number of channels.
+Must read in on-site energies using OrbitsAndEnergies.  No other
+parameters are read in; two center integrals are defined solely in
+terms of universal parameters and the distances between neighbors.
+
+
+\item {\tt 10 or greater} Special models defined by the subroutine
+{\tt TBParamsSpecial}.   Parameters are read in using the
+TightBindingParameters tag. \underline{This is the only routine
+that must be
+changed to define a new model.} \\
+Examples include:
+    \begin{itemize}
+\item {\tt 10 } Any crystal with one s-state per site and only one
+nearest-neighbor 2-center hopping matrix element.  The value is
+defined as first entry under TightBindingParameters which applies
+to all neighbors below a cutoff radius defined by the second entry
+under TightBindingParameters. All other information is in the
+structure and the OrbitsAndEnergies. Examples that can be treated
+this way include any of the s-bands for elemental crystals in
+texts such as Ashcroft and Mermin, Kittel, etc., and $\pi$ bands
+of a graphene layer and a buckyball or nanotube in the pure $\pi$
+state approximation.
+\begin{verbatim}
+TightBindingParameters
+2
+1.0
+1.1
+\end{verbatim}
+
+\item {\tt 11} Same as above with first and second neighbor
+2-center hopping matrix elements. The values are defined under
+TightBindingParameters: Entry 1 - n.n. matrix element; Entry 2 -
+cutoff distance for n.n.; Entry 3 - n.n.n. matrix element; Entry 4
+- cutoff distance for n.n.n.
+
+\begin{verbatim}
+TightBindingParameters
+4
+1.0
+1.1
+0.3
+2.2
+\end{verbatim}
+
+\item {\tt 12} A model of an ionic crystal with two atoms per
+cell, one with one s-state and one with p-states. The value is
+defined under TightBindingParameters: Entry 1 - n.n. s-p sigma
+matrix element; Entry 2 - cutoff distance for n.n.  The onsite
+energies are defined under OrbitsAndEnergies.
+
+    \end{itemize}
+\end{itemize}
+
+\begin{verbatim}
+TightBindingModelType  1
+\end{verbatim}
+
+{\it Default value:} 0  (General Method - requires input of
+Slater-Koster arrays with F and K parameters)
+
+\item[{\bf MaximumDistance}] ({\it real}):
+\index{MaximumDistance@{\bf MaximumDistance}} The interaction
+cutoff distance in Bohr~units.
+
+\begin{verbatim}
+MaximumDistance 5.5
+\end{verbatim}
+
+{\it Default value:} No default.  Variable must be supplied.
+
+\item[{\bf NumChannelsPerSpecie}] ({\it data block}):
+\index{NumChannelsPerSpecie@{\bf NumChannelsPerSpecie}} The total
+number of electron channels for each chemical species. The
+distinct channels corresponds to the different principal quantum
+numbers.
+
+\begin{verbatim}
+NumChannelsPerSpecie
+1 2
+\end{verbatim}
+
+The first number is the {\bf ChemicalSpeciesLabel} while the second
+number is the total number of channels. If the chemical species were
+nitrogen for example, the first channel would be the 1s e$^-$ while the
+second channel would include the 2s and 2p e$^-$. {\it Note that the
+number of channels does not impose any restriction on the number of
+available orbitals.}
+
+{\it Default value:} Default = 1.
+
+%RMM Removed LminAndLmax
+
+\item[{\bf OrbitsAndEnergies}] ({\it data block}):
+\index{OrbitsAndEnergies@{\bf OrbitsAndEnergies}} The on-site
+Slater-Koster parameters (also called "orbital energies") for each
+species, channel and specific orbital are specified in units
+determined by the switch {\bf InputEnergiesInEV}.
+
+\begin{verbatim}
+OrbitsAndEnergies
+1 1 4
+0  0  -4.2
+1  1   1.715
+1  2   1.715
+1  3   1.715
+1 2 1
+0  0   6.68
+\end{verbatim}
+
+In the example above, the first and sixth line provides the {\it
+species number}, {\it channel number}, and {\it number of
+orbitals}. The {\it number of orbitals} does refers to the number
+orbitals in the basis for that particular specie and channel.  It
+does \underline{not} refer to the number of occupied orbitals.
+
+The second through fifth line and the seventh line specify the
+{\it angular momentum}, {\it orbital ID}, and {\it orbital
+energy}. There will be such a line for each orbital.
+
+The order of the orbitals is defined for each model type:
+\begin{description}
+\item {\tt 0} For type 0 (General rotation matrix method) the
+orbitals are real spherical harmonics.  For each angular momentum
+$\ell$, $2\ell + 1$ orbitals must be listed.  The order is given
+below. \item {\tt 1} For type 1 (Harrison universal model) the
+orbitals are real spherical harmonics are the same as for model 0,
+except that only up to $\ell=1$ is supported at present. \item {\tt
+>=10} These are specially coded models and it is up to the user to
+determine the order and the meaning of the orbitals.
+\end{description}
+
+For a given $\ell$, all $2\ell+1$ orbital energies must be
+specified. The only allowed {\it orbital ID} for $\ell = 0$ is 0,
+for $\ell = 1$ is 1 thru 3, for $\ell = 2$ is 4 thru 8, for $\ell$
+is $\ell^2$ thru $\ell^2 + 2\ell$. The orbital ID refers to the
+real orbitals constructed from linear combinations of the
+spherical harmonics ($Y_{lm}$). The precise order of the orbitals
+is defined as done by many authors, e.g., see
+\begin{small}
+\begin{verbatim}
+http://www.cachesoftware.com/mopac/Mopac2002manual/real_spherical_harmonics.html
+\end{verbatim}
+\end{small}
+for the expressions for the orbitals in order for
+$\ell$ up to 3. However, other authors may use a different order.
+For a particular $\ell$, the orbital ID $\ell^2$ refer to the real
+orbital of the form $Y_{\ell 0}$. The next orbital ID, $\ell^2$ +
+1, refers to the real orbital of the form $(Y_{\ell-1} -
+Y_{\ell+1}^\ast)/\sqrt{2}$. The next next orbital ID, $\ell^2$ +
+2, refers to the real orbital of the form $i(Y_{\ell-1} +
+Y_{\ell+1}^\ast)/\sqrt{2}$. After the real orbital whose ID equals
+$\ell^2$, the orbitals alternate between those of the form
+\begin{eqnarray*}
+\frac{1}{\sqrt{2}}\left(Y_{l-m} + (-1)^m Y_{lm}^\ast\right)
+\end{eqnarray*}
+and those of the form
+\begin{eqnarray*}
+\frac{i}{\sqrt{2}}\left(Y_{l-m} - (-1)^m Y_{lm}^\ast\right)
+\end{eqnarray*}
+where $m$ is the azimuthal quantum number.
+
+\begin{table}[ht]
+\centering
+\caption{Orbital ID for $\ell = 0$ thru $\ell = 2$}
+\vspace{0.2cm}
+\begin{tabular}{|c|c|}\hline
+orbital ID & real orbital \\ \hline
+0 & $s$   \\
+1 & $p_z$ \\
+2 & $p_x$ \\
+3 & $p_y$ \\
+4 & $d_{3z^2 - r^2}$ \\
+5 & $d_{xz}$ \\
+6 & $d_{yz}$ \\
+7 & $d_{x^2-y^2}$ \\
+8 & $d_{xy}$  \\ \hline
+\end{tabular}
+\end{table}
+
+{\it Default value:} No default.  Variable must be supplied.
+
+\item[{\bf numSKparams}] ({\it integer}): \index{numSKparams@{\bf
+numSKparams}} (Used only for TightBindingModelType 0 - General
+rotation method.) Number of Slater-Koster parameters to be read
+in. It is only necessary to specify the non-zero Slater-Koster
+values.
+\begin{verbatim}
+numSKparams 5
+\end{verbatim}
+
+{\it Default value:} No default.  Variable must be supplied for
+TightBindingModelType 0.
+
+\item[{\bf SKMatrices}] ({\it data block}): \index{SKMatrices@{\bf
+SKMatrices}} (Used only for TightBindingModelType 0 - General
+rotation method.)
+There will be {\bf numSKparams} lines with the following input:\\
+$\ell_i$ $\ell_j$ $m$ $n_i$ $n_j$ species$_i$ species$_j$  $F$ $K$
+
+\begin{verbatim}
+SKMatrices
+0 0 0 1 1 1 1  0.0 -2.075
+0 1 0 1 1 1 1  0.0  2.480816372
+1 1 0 1 1 1 1  0.0  2.71625
+1 1 1 1 1 1 1  0.0 -0.715
+1 0 0 1 2 1 1  0.0 -2.327399971
+\end{verbatim}
+
+$F$ contains the distance dependent part of the Slater-Koster matrix,
+while $K$ contains the distance independent part. The Slater-Koster
+matrix is
+\begin{eqnarray*}
+K \times R_{ij}^F
+\end{eqnarray*}
+where $R_{ij}$ is the separation between atoms $i$ and $j$.  where
+$F$ is a real number and $K$ is units of determined by {\bf
+InputEnergiesInEV} times Bohr$^{-F}$.
+
+The Slater-Koster matrix has many symmetries. It is diagonal in $m$ and
+since $\pm m$ are equivalent only $|m|$ is needed. The following
+symmetries are also imposed,
+\begin{eqnarray*}
+F(\ell_j,\ell_i,m,n_j,n_i,\mathrm{species}_j,\mathrm{species}_i) & = &
+F(\ell_i,\ell_j,m,n_i,n_j,\mathrm{species}_i,\mathrm{species}_j) \\
+K(\ell_j,\ell_i,m,n_j,n_i,\mathrm{species}_j,\mathrm{species}_i) & = &
+(-1)^{\ell_i + \ell_j}*K(\ell_i,\ell_j,m,n_i,n_j,\mathrm{species}_i,\mathrm{species}_j)
+\end{eqnarray*}
+
+{\it Default value:} Any Slater-Koster parameter not specified is
+set to zero. Used only for TightBindingModelType 0.
+
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Plane wave}
+
+
+PW carries out calculations of bands using a plane wave basis. The
+calculation is done with a fixed potential ({\underline{not}
+self-consistent) which may be any form of a spherical potential
+$V(r)$ around each atom site.  For realistic calculations the
+potential must be chosen to be a reasonable representation of the
+true total potential or pseudopotential in the crystal. The
+potential is specified by the label {\bf ChemicalSpeciesLabel} in
+which must be one of the labels for which there is a defined
+potential. At present, potentials provided in the code are limited
+to: Ga, As, and Si (empirical pseudopotentials); H (Coulomb
+potential screened with Thomas-Fermi function for r$_s$ = 1.0);
+and {\tt El} (Empty lattice - free electrons with zero potential).
+Additional potentials can be added to module located in {\tt
+atomPotentialMod.f90}.
+
+\begin{description}
+\itemsep 10pt
+\parsep 0pt
+
+
+ \item[{\bf EnergyCutoff}] ({\it
+real}): \index{EnergyCutoff@{\bf EnergyCutoff}} Defines the plane
+wave cutoff (in Hartree units unless the tag {\bf InputEnergyInEV}
+is present in the input file).
+
+\begin{verbatim}
+EnergyCutOff 6.0
+\end{verbatim}
+
+{\it Default value:} No default.  Variable must be supplied.
+
+\item[{\bf DiagonalizationSwitch}] ({\it integer}):
+\index{DiagonalizationSwitch@{\bf DiagonalizationSwitch}}
+The available methods for calculating eigenvalues and eigenvectors are:
+\begin{description}
+\item {\tt 0} -- Direct matrix inversion
+\item {\tt 1} -- Conjugate gradient method
+\end{description}
+Conjugate gradient is more efficient than direct matrix inversion for
+matrices of rank 700 or larger. 
+
+\begin{verbatim}
+DiagonalizationSwitch 0
+\end{verbatim}
+
+{\it Default value:} 0
+
+\item[{\bf CGIterationPeriod}] ({\it integer}):
+\index{CGIterationPeriod@{\bf CGIterationPeriod}}
+Occasionally, the initial trial eigenvector is ``bad.'' {\bf
+CGIterationPeriod} is the number of retries. Typical values for this tag
+are between 1 and 5.
+\begin{verbatim}
+CGIterationPeriod 1
+\end{verbatim}
+{\it Default value:} 1
+
+\item[{\bf CGTolerance}] ({\it real}): \index{CGTolerance@{\bf
+CGTolerance}} Specifies the tolerance on the energy eigenvalues;
+in Hartree unless the tag {\bf InputEnergyInEV} is present in the
+input file.
+\begin{verbatim}
+CGTolerance 1.d-4
+\end{verbatim}
+
+{\it Default value:} No default. Variable must be supplied.
+
+
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Plane wave density}
+
+\begin{description}
+\itemsep 10pt
+\parsep 0pt
+
+\item[{\bf MonkHorstPack}] ({\it data block}):
+\index{MonkHorstPack@{\bf MonkHorstPack}}
+The number of division per dimension to sample in the first Brillouin
+zone.
+
+\begin{verbatim}
+MonkHorstPack
+2 2 2
+\end{verbatim}
+
+{\it Default value:} Gamma point of the cell.
+
+\item[{\bf NumberOfOccupiedBands}] ({\it integer}):
+\index{NumberOfOccupiedBands@{\bf NumberOfOccupiedBands}}
+$2\times${\bf NumberOfOccupiedBands} must equal the number of
+electrons.
+
+{\it Default value:} No default. Variable must be supplied.
+
+\end{description}

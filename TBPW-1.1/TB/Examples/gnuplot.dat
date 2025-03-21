@@ -1,0 +1,10 @@
+set data style lines
+set nokey
+set xrange [0:    0.74]
+set yrange [   -3.00 :    3.00]
+set xtics ("Ga"     0.00," X "     0.74)
+plot "plot.dat"
+pause -1
+set output "band.ps"
+set terminal postscript
+replot

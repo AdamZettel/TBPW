@@ -1,0 +1,56 @@
+\section{INTRODUCTION}
+
+{\bf TBPW} is an electronic structure code primarily intended for
+pedagogical purposes. It is written from the ground-up in a
+modular style using Fortran 90. This code is composed of three
+distinct parts: empirical tight binding ({\bf TB}), empirical
+pseudopotential plane wave ({\bf PW}), and features common to all
+band structure codes ({\bf Common}).
+
+The main characteristics of these codes are:
+\begin{itemize}
+\item Readily provides band structure plots
+
+\item {\bf TB} implements the Slater-Koster 2-center formalism.
+Options are provided for simple models (Harrison or user
+specified) or a completely general approach using a rotation
+matrix formalism that allows the use of orbitals with arbitrary
+angular momentum ($\ell$).
+
+\item {\bf PW} implements the plane wave method for any local potential or
+pseudopotential.  Several choices for potentials are provided and the
+user can add others.  The bands can be found using direct
+diagonalization or a conjugate gradient method. Additionally, there is a
+plane wave density ({\bf PWD}) code which outputs the electron density
+on a grid.
+\end{itemize}
+
+The code is coordinated with the description given in the book and
+associated web site:
+\begin{itemize}
+\item {\bf Electronic Structure: Basic Theory and Practical
+Methods}, by Richard M. Martin, Cambridge University Press,
+2004.\\
+(See http://books.cambridge.org/0521782856.htm).
+
+\item {\bf ElectronicStructure.org}  is the web site
+(http://ElectronicStructure.org) for new material and updates,
+including links to {\bf TBPW} and many other codes.
+\end{itemize}
+
+The input uses keywords (``tags") and input data chosen to
+coordinate with those used by the {\bf SIESTA} code
+(http://www.uam.es/departamentos/ciencias/fismateriac/siesta/),
+which is a full self-consistent {\it ab initio} pseudopotential local
+orbital code.
+
+ Two technical papers
+describing the methods implemented in this code are located in
+{\tt Doc}.
+\begin{itemize}
+\item {\tt tight\_binding.pdf} describes tight binding
+plus the rotation matrix implementation used to handle orbitals of
+arbitrary angular momentum.
+\item {\tt conj\_grad.pdf} describes the conjugate gradient method used
+in the PW code.
+\end{itemize}

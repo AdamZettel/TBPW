@@ -1,0 +1,50 @@
+*** Calculation for simple s band in 1 dimension
+
+***  Information for lattice 
+NumberOfDimensions 3
+LatticeConstant 1.0
+LatticeVectors
+10.0 0.0 0.0
+0.0 10.0 0.0
+0.0 0.0 1.0 
+
+*** Information for atomic positions
+NumberOfAtoms 1
+NumberOfSpecies 1
+ChemicalSpeciesLabel
+1 0 X
+(Chemical Species label (first number) assumed to be in sequential order)
+
+AtomicCoordinatesFormat ScaledByLatticeVectors
+AtomicCoordinatesAndAtomicSpecies
+0   0   0   1
+
+*** Information for k-points and number of bands to plot
+NumberOfBands 1
+NumberOfLines 1
+NumberOfDivisions 20
+KPointsScale ReciprocalLatticeVectors
+KPointsAndLabels
+0.0   0.0   0.0      Ga
+0.0   0.0   0.5      X
+
+*** Information for Tight Binding Calculation
+***  Model with only pi bands with nearest-neigh. interactions
+TightBindingModelType  10 
+MaximumDistance 1.5
+InputEnergiesInEV
+OrbitsAndEnergies
+1  1    1 
+0  0  0.0
+TightBindingParameters
+2
+-1.0
+1.2
+
+
+
+
+
+
+
+

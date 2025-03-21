@@ -1,0 +1,12 @@
+\section{REVISION HISTORY}
+
+\subsection{Changes with respect to version 1.0}
+
+\begin{enumerate}
+\item The tag {\bf DiagonalizationSwitch} no longer supports option 2
+  - Conjugate gradient method + FFT. As a result, {\bf TBPW} does not
+  need the FFTW library.
+\item The value for the tag {\bf LminAndLmax} does not need to be specified in the input file explictly. It is determined by the program at run time.
+\item Tag {\bf Channel} renamed to {\bf NumChannelsPerSpecie}.
+\item Introduction of new tag {\bf TightBindingModelType}.
+\end{enumerate}

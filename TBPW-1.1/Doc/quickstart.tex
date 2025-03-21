@@ -1,0 +1,61 @@
+\section{QUICK START}
+
+\subsection{Compilation}
+There is a machine \underline{independent} makefile included in the
+source root directory. {\tt Make} should always be run from this
+directory. The machine \underline{dependent} makefile are located in
+directory named {\tt Sys}. Find a suitable makefile for your
+architecture, and then copy or link to {\tt arch.make} located in the
+source root directory. Note that {\tt arch.make} is included by the main
+makefile.
+
+The sources files are organized in three directories: {\tt TB}, {\tt
+PW}, and {\tt Common}. Modules which are shared by both {\bf TB} and
+{\bf PW} codes are placed in the {\tt Common} directory.
+
+There are three targets to make:
+\begin{itemize}
+\item {\bf tb} -- the tight binding code
+\item {\bf pw} -- the plane wave code
+\item {\bf pwDensity} -- the plane wave code that produces the electron
+density on a grid
+\end{itemize}
+
+Typing {\tt make} plus the target name will create the create the
+executable in its respective source directory.
+
+\subsection{Libraries}
+{\bf TBPW} is linked against the LAPACK and BLAS libraries. They can
+be downloaded from {\tt http://www.netlib.org/}. The appropriate
+variables in the machine \underline{dependent} makefile will require
+modification.  Because different compilers handle calls to external
+functions differently, the following two preprocessor flags are
+available for adding underscores to LAPACK (-DAUSLAPCK) and BLAS
+(-DAUSBLAS). If you get undefined reference errors in the external
+subroutine calls to LAPACK or BLAS, try using these flags.
+
+\subsection{Running the program}
+Some example input files along with their corresponding bands structure
+plots are provided in the directory {\tt TBPW/TB/Examples} and {\tt
+TBPW/PW/Examples}. The tight binding and plane wave codes are
+executed follows:
+\begin{verbatim}
+./pw 
+
+OR
+
+./tb
+\end{verbatim}
+
+At the {\tt Input File Name} prompt, type the filename including any
+extension. The band structure output file can be easily plotted with
+gnuplot by typing
+\begin{verbatim}
+gnuplot gnuplot.dat
+\end{verbatim}
+This also creates a band structure plot file {\tt band.ps}
+
+\subsection{Getting help with the code}
+To post questions or comments about {\bf TBPW} send an e-mail to
+tbpw@mcc.uiuc.edu. You can subscribe to this mailing list by sending
+e-mail to tbpw-subscribe@mcc.uiuc.edu.

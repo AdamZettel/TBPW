@@ -1,0 +1,55 @@
+*** Graphene - calculation for pi band
+
+***  Information for lattice 
+***  Lattice constant = sqrt(3) * NN distance
+***  NN distance ~ 1.42 A
+NumberOfDimensions 3
+LatticeConstant 2.4595
+LatticeVectors
+1.0 0.0 0.0
+0.5 0.866025 0.0
+0.0 0.0 10.0
+
+*** Information for atomic positions
+NumberOfAtoms 2
+NumberOfSpecies 1
+ChemicalSpeciesLabel
+1 8 C
+(Chemical Species label (first number) assumed to be in sequential order)
+
+AtomicCoordinatesFormat ScaledCartesian
+AtomicCoordinatesAndAtomicSpecies
+0     0        0         1
+0     0.57735  0         1
+
+*** Information for k-points and number of bands to plot
+NumberOfBands 2
+NumberOfLines 3
+NumberOfDivisions 20
+KPointsScale TwoPi/a
+KPointsAndLabels
+0.0   0.0       0.0      Ga
+0.5   0.28868   0.0      M
+0.66667   0.0   0.0      K
+0.0   0.0       0.0      Ga
+
+*** Information for Tight Binding Calculation
+***  Model with only pi bands with nearest-neigh. interactions
+TightBindingModelType  10 
+MaximumDistance 2.0
+InputEnergiesInEV
+OrbitsAndEnergies
+1  1    1 
+0  0  0.0
+TightBindingParameters
+2
+-1.0
+1.5
+
+
+
+
+
+
+
+

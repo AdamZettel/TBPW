@@ -1,0 +1,110 @@
+  Input file name
+ NumberOfDimensions            3
+ Lattice Constant = scale factor for lengths
+ LatticeConstant    10.6769569000000     
+ Lattice Vectors as read in (unscaled) LatticeVectors
+  0.000000000000000E+000  0.500000000000000       0.500000000000000     
+  0.500000000000000       0.000000000000000E+000  0.500000000000000     
+  0.500000000000000       0.500000000000000       0.000000000000000E+000
+ NumberOfSpecies             2
+ NumberOfAtoms             2
+ ChemicalSpeciesLabel 
+           1            31  Ga
+           2            33  As
+ AtomicCoordinatesFormat ScaledByLatticeVectors
+ AtomicCoordinatesAndAtomicSpecies
+ -0.125000000000000      -0.125000000000000      -0.125000000000000     
+           1
+  0.125000000000000       0.125000000000000       0.125000000000000     
+           2
+ NumberOfBands            10
+ KPointsScale ReciprocalLatticeVectors
+ Warning tag NumberOfKPoints could not be found in GaAs-Vogl.in                 
+                                                    .
+ Checking for next option - read lines and divisions for plotting 
+ NumberOfLines             5
+ NumberOfDivisions            15
+ KPointsScale ReciprocalLatticeVectors
+ KPointsAndLabels
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000  Ga
+  0.375000000000000       0.375000000000000       0.750000000000000       K 
+  0.500000000000000       0.500000000000000       0.500000000000000       L 
+  0.000000000000000E+000  0.000000000000000E+000  0.000000000000000E+000  Ga
+  0.000000000000000E+000  0.500000000000000       0.500000000000000       X 
+  0.250000000000000       0.625000000000000       0.625000000000000       U 
+ MaximumDistance    5.50000000000000     
+ TightBindingModelType =            5
+ General Tight-binding Model for any Ang. Mom.
+ Written by Nick Romero
+ Must read inOrbitsAndEnergies, channels, Lmin, Lmax, and SK matrices
+  specie(s)  numchannels(s)  Lmin  Lmax 
+          1           1     0     1
+          1           2     0     0
+          2           1     0     1
+          2           2     0     0
+ OrbitsAndEnergies
+ Element =            1 Channel =            1
+  orbit  ang. mom.  mstar   energy  
+      1          0      0   -8.3410
+      2          1      1   -1.0414
+      3          1      2   -1.0414
+      4          1      3   -1.0414
+ Element =            1 Channel =            2
+  orbit  ang. mom.  mstar   energy  
+      1          0      0    8.5914
+ Element =            2 Channel =            1
+  orbit  ang. mom.  mstar   energy  
+      1          0      0   -2.6569
+      2          1      1    3.6686
+      3          1      2    3.6686
+      4          1      3    3.6686
+ Element =            2 Channel =            2
+  orbit  ang. mom.  mstar   energy  
+      1          0      0    6.7386
+ SKMatrices
+  li  lj  m  ni  nj  speciesI  speciesJ    F      K   
+   0   0  0   1   1         1         1   0.00   0.00
+   0   1  0   1   1         1         1   0.00   0.00
+   0   1  1   1   1         1         1   0.00   0.00
+   1   0  0   1   1         1         1   0.00   0.00
+   1   0  1   1   1         1         1   0.00   0.00
+   1   1  0   1   1         1         1   0.00   0.00
+   1   1  1   1   1         1         1   0.00   0.00
+   0   0  0   1   2         1         1   0.00   0.00
+   1   0  0   1   2         1         1   0.00   0.00
+   1   0  1   1   2         1         1   0.00   0.00
+   0   0  0   2   1         1         1   0.00   0.00
+   0   1  0   2   1         1         1   0.00   0.00
+   0   1  1   2   1         1         1   0.00   0.00
+   0   0  0   2   2         1         1   0.00   0.00
+   0   0  0   1   1         1         2   0.00  -1.61
+   0   1  0   1   1         1         2   0.00   1.94
+   0   1  1   1   1         1         2   0.00   0.00
+   1   0  0   1   1         1         2   0.00  -2.50
+   1   0  1   1   1         1         2   0.00   0.00
+   1   1  0   1   1         1         2   0.00   3.03
+   1   1  1   1   1         1         2   0.00  -0.78
+   0   0  0   1   2         1         2   0.00   0.00
+   1   0  0   1   2         1         2   0.00  -1.20
+   1   0  1   1   2         1         2   0.00   0.00
+   0   0  0   2   1         1         2   0.00   0.00
+   0   1  0   2   1         1         2   0.00   1.21
+   0   1  1   2   1         1         2   0.00   0.00
+   0   0  0   2   2         1         2   0.00   0.00
+   0   0  0   1   1         2         2   0.00   0.00
+   0   1  0   1   1         2         2   0.00   0.00
+   0   1  1   1   1         2         2   0.00   0.00
+   1   0  0   1   1         2         2   0.00   0.00
+   1   0  1   1   1         2         2   0.00   0.00
+   1   1  0   1   1         2         2   0.00   0.00
+   1   1  1   1   1         2         2   0.00   0.00
+   0   0  0   1   2         2         2   0.00   0.00
+   1   0  0   1   2         2         2   0.00   0.00
+   1   0  1   1   2         2         2   0.00   0.00
+   0   0  0   2   1         2         2   0.00   0.00
+   0   1  0   2   1         2         2   0.00   0.00
+   0   1  1   2   1         2         2   0.00   0.00
+   0   0  0   2   2         2         2   0.00   0.00
+ EnergiesInEV
+ Total No. of orbitals = size of Hamiltonian =           10
+ Index =           55

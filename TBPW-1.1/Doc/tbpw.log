@@ -1,0 +1,125 @@
+This is TeX, Version 3.14159 (Web2C 7.4.5) (format=latex 2003.11.5)  7 JUL 2004 19:38
+**tbpw.tex
+(./tbpw.tex
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, n
+ohyphenation, loaded.
+(/usr/share/texmf/tex/latex/base/article.cls
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size11.clo
+File: size11.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (./tbpw.aux (./titlepage.aux)
+(./introduction.aux) (./quickstart.aux) (./revision.aux) (./inputdatafile.aux)
+(./acknowledgements.aux) (./license.aux))
+\openout1 = `tbpw.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+\openout2 = `titlepage.aux'.
+
+ (./titlepage.tex [1
+
+
+])
+\openout2 = `introduction.aux'.
+
+
+(./introduction.tex
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 12.
+ (/usr/share/texmf/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 18.
+) [1
+
+
+]
+\openout2 = `quickstart.aux'.
+
+
+(./quickstart.tex [2
+
+
+]) [3]
+\openout2 = `revision.aux'.
+
+ (./revision.tex) [4
+
+
+]
+\openout2 = `inputdatafile.aux'.
+
+ (./inputdatafile.tex
+Underfull \hbox (badness 10000) in paragraph at lines 17--20
+[]\OT1/cmr/m/n/10.95 The tags are cho-sen to co-or-di-nate with those used by t
+he SIESTA code,
+ []
+
+[5
+
+
+] [6]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 176.
+ [7] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 301--307
+[]\OT1/cmtt/m/n/10.95 10 or greater \OT1/cmr/m/n/10.95 Spe-cial mod-els de-fine
+d by the
+ []
+
+[9] [10] [11] [12]) [13]
+\openout2 = `acknowledgements.aux'.
+
+ (./acknowledgements.tex) [14
+
+
+]
+\openout2 = `license.aux'.
+
+ (./license.tex) [15
+
+
+]
+(./tbpw.aux (./titlepage.aux) (./introduction.aux) (./quickstart.aux)
+(./revision.aux) (./inputdatafile.aux) (./acknowledgements.aux) (./license.aux)
+) )
+(\end occurred inside a group at level 1) 
+Here is how much of TeX's memory you used:
+ 319 strings out of 95847
+ 3643 string characters out of 1195962
+ 50363 words of memory out of 1000001
+ 3270 multiletter control sequences out of 10000+50000
+ 10448 words of font info for 37 fonts, out of 500000 for 1000
+ 14 hyphenation exceptions out of 1000
+ 25i,9n,21p,198b,430s stack positions out of 1500i,500n,5000p,200000b,5000s
+
+Output written on tbpw.dvi (16 pages, 35740 bytes).

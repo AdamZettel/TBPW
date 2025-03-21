@@ -1,0 +1,72 @@
+*** Calculation for C nanotube - pi bands only with n.n. hopping
+
+***  Information for lattice 
+***  Carbon nanotube that repeats in z direction
+***  Bond length = 1.42 A
+***  (5,0) Tube
+NumberOfDimensions 3
+LatticeConstant 1.0
+LatticeVectors
+0.0 15.0 0.0
+15.0 0.0 0.0
+0.0 0.0 4.26
+
+*** Information for atomic positions
+NumberOfAtoms 20
+NumberOfSpecies 1
+ChemicalSpeciesLabel
+1 8 C
+(Chemical Species label (first number) assumed to be in sequential order)
+
+AtomicCoordinatesFormat ScaledCartesian
+AtomicCoordinatesAndAtomicSpecies
+1.957     0         0         1
+1.583     1.15      2.13      1
+1.957     0         1.42      1
+1.583     1.15      3.55      1
+0.605     1.861     0         1
+-0.605    1.861     2.13      1
+0.605     1.861     1.42      1
+-0.605    1.861     3.55      1
+-1.583    1.15      0         1
+-1.957    0         2.13      1
+-1.583    1.15      1.42      1
+-1.957    0         3.55      1
+-1.583    -1.15     0         1
+-0.605    -1.861    2.13      1
+-1.583    -1.15     1.42      1
+-0.605    -1.861    3.55      1
+0.605     -1.861    0         1
+1.583     -1.15     2.13      1
+0.605     -1.861    1.42      1
+1.583     -1.15     3.55      1
+
+*** Information for k-points and number of bands to plot
+NumberOfBands 20
+NumberOfLines 1
+NumberOfDivisions 20
+KPointsScale ReciprocalLatticeVectors
+KPointsAndLabels
+0.0   0.0   0.0      Ga
+0.0   0.0   0.5      X
+
+*** Information for Tight Binding Calculation
+***  Model with only pi bands 
+TightBindingModelType  10 
+MaximumDistance 2.0
+InputEnergiesInEV
+OrbitsAndEnergies
+1  1    1 
+0  0  0.0
+TightBindingParameters
+2
+-1.0
+1.5
+
+
+
+
+
+
+
+
