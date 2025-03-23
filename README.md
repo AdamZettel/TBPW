@@ -1,3 +1,5 @@
+# About
+I made this repo to make it easy for people to download and use TBPW. I did not write the original code.
 # TBPW
 An educational Density Functional Theory code developed at UIUC 
 # Source
